@@ -1,8 +1,8 @@
-/***
+'''
 why : phantom provides selenium to run in headleass mode, i.e no browser popup window
 
 dl: phantomjs.org
-***/
+'''
 
 from selenium import webdriver
 

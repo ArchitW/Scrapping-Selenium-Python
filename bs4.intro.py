@@ -1,9 +1,9 @@
 from bs4 import BeautifulSoup
 
 
-/***
+'''
 downloading page via selenium PhantomJS goes here
-***/
+'''
 
 html_doc = get(....)
 
