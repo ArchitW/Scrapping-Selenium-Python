@@ -5,12 +5,15 @@ from bs4 import BeautifulSoup
 downloading page via selenium PhantomJS goes here
 ***/
 
-html_doc = 'some html'
+html_doc = get(....)
 
 ''' quit driver '''
 driver.quit()
 
 soup = BeautifulSoup(html_doc, 'lxml')
+
+'''open Local file'''
+soup= BeautifulSoup(open('local-file.html'),'lxml')
 
 ''' reformats HTML '''
 soup.prettify()
@@ -55,3 +58,49 @@ all_p_child = p.findChildern()
 # Search for parent
 p = soup.find_all('p', class_ = 'searchEngines')
 p_parent = soup.findParent() #will return body, cuz its a direct parent
+
+
+# Search for sibling
+first_a = soup.find('p')
+remain_sibling = first_a.findNextSiblings() #will return body, cuz its a direct parent
+
+
+
+#Extract Data
+'''html
+<p class="title">
+<b>Some title that i need to extract</b>
+</p>
+<a href='duckduckgo.com' id="link4">DuckDuckgo.com</a>
+'''
+
+p_inner_text = soup.find('p').text
+a_text = soup.find('a').text
+
+
+'''Scrap all the Links'''
+
+all_links = soup.find_all('a')
+for a in all_links:
+    print a['href']
+
+'''Scrape data inside table'''
+'''
+<table>
+  <tbody>
+  <tr>
+    <td>Row 1 , Col 1</td>
+    <td>Row 1 , Col 2</td>
+  </tr>
+  <tr>
+    <td>Row 2 , Col 1</td>
+    <td>Row 2 , Col 2</td>
+  </tr>
+  </tbody>
+</table>
+'''
+
+
+for tr in soup.find_all('tr'):
+    for td in tr.find_all('td'):
+        print td.text
